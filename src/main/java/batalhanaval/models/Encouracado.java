@@ -1,38 +1,34 @@
 
 package batalhanaval.models;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+
 /**
  *
  * @author Zetsubou
  */
-public class Encouracado implements Navio{
-    private int qtdDeNavios = 2;
-    private int tamanhoNavio = 2;
-    private String nomeNavio = "Encouraçado";
-    private Jogador j1;
+@Entity
+@DiscriminatorValue(value = "E")
+public class Encouracado extends Arma{
+    @Column(name = "qnt")
+    private final int qtdDeNavios = 2;
+    @Column(name = "tamanho")
+    private final int tamanhoNavio = 2;
+    @Column(name = "nome")
+    private final String nomeNavio = "Encouraçado";
     
-    @Override
     public int getTamanhoNavio() {
             return tamanhoNavio;
     }
 
-    @Override
     public int getQtdDeNavios() {
             return qtdDeNavios;
     }
 
-    @Override
     public String getNomeNavio(){
             return nomeNavio;
     }    
 
-    public Jogador getJ1() {
-        return j1;
-    }
-
-    public void setJ1(Jogador j1) {
-        this.j1 = j1;
-    }
-
-    
 }

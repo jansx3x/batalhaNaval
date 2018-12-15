@@ -1,11 +1,9 @@
 
 package batalhanaval.main;
 
-import batalhanaval.models.Coordenada;
 import batalhanaval.models.Cruzador;
 import batalhanaval.models.Encouracado;
 import batalhanaval.models.HidroAviao;
-import batalhanaval.models.Navio;
 import batalhanaval.models.PortaAviao;
 import batalhanaval.models.Submarino;
 import java.util.ArrayList;
@@ -19,18 +17,11 @@ public class startJogo {
     
     private Random generate = new Random();
     
-    public void iniciaJogo(int[][] vetor, Coordenada idA){ 
-        int linha = idA.getLinha();
-        int coluna = idA.getColuna();
+    public void iniciaJogo(int[][] vetor){ 
+        //int linha = idA.getLinha();
+        //int coluna = idA.getColuna();
         boolean cabe = false;
         
-        ArrayList<Navio> navios = new ArrayList<>();
-        
-        navios.add(new Cruzador());
-        navios.add(new Encouracado());
-        navios.add(new HidroAviao());
-        navios.add(new PortaAviao());
-        navios.add(new Submarino());
         
         // Preenche o vetor com Zeros (0)
         for (int i = 0; i < 10; i++){
@@ -38,7 +29,7 @@ public class startJogo {
                 vetor[i][j] = 0;
             }
         }
-            
+        /*    
         for(int cont = 0; cont < navios.size(); cont++){
             int contador = 0;
             while(navios.get(cont).getQtdDeNavios() > contador) {				
@@ -74,7 +65,7 @@ public class startJogo {
 				}
 				contador++;
 			}
-		}
+		}*/
 
     }
     

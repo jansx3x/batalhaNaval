@@ -1,0 +1,70 @@
+
+package batalhanaval.models;
+
+import java.io.Serializable;
+import javax.persistence.*;
+/**
+ *
+ * @author Zetsubou
+ */
+@Entity
+@Table(name="ataque")
+public class Ataque implements Serializable {
+
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "idataque")
+    private Integer idataque;
+    
+    @Column(name = "linha")
+    private String linha;
+    
+    @Column(name = "coluna")
+    private String coluna;
+    
+    @ManyToOne
+    @JoinColumn(name = "jogador_idjogador")
+    private Jogador j1;
+
+    public Ataque(){
+        
+    }
+
+    public Integer getIdataque() {
+        return idataque;
+    }
+
+    public void setIdataque(Integer idataque) {
+        this.idataque = idataque;
+    }
+
+    public String getLinha() {
+        return linha;
+    }
+
+    public void setLinha(String linha) {
+        this.linha = linha;
+    }
+
+    public String getColuna() {
+        return coluna;
+    }
+
+    public void setColuna(String coluna) {
+        this.coluna = coluna;
+    }
+
+    public Jogador getJ1() {
+        return j1;
+    }
+
+    public void setJ1(Jogador j1) {
+        this.j1 = j1;
+    }
+    
+    @Override
+    public String toString() {
+        return "batalhanaval.models.Ataque[ idataque=" + idataque + " ]";
+    }
+    
+    
+}

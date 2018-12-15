@@ -12,7 +12,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="jogador")
-public class Jogador implements Serializable {
+public class Jogadores implements Serializable {
     
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="idjogador")
@@ -28,10 +28,13 @@ public class Jogador implements Serializable {
     @JoinColumn(name = "jogo_idjogo", referencedColumnName = "idjogo")
     private Partida jogoIdjogo;
     
-    @OneToMany(mappedBy="jogador")
+    @OneToMany(mappedBy = "j1", targetEntity = Ataque.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private final List<Ataque> ataques = new ArrayList<>();
     
-    public Jogador(){
+    @OneToMany(mappedBy = "idJogador", targetEntity = Arma.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private final List<Arma> armas = new ArrayList<>();
+            
+    public Jogadores(){
         
     }
     
@@ -93,7 +96,7 @@ public class Jogador implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Jogador other = (Jogador) obj;
+        final Jogadores other = (Jogadores) obj;
         if (this.id != other.id) {
             return false;
         }

@@ -3,7 +3,7 @@ package batalhanaval.gui;
 
 import batalhanaval.dao.JogadorDAO;
 import batalhanaval.infra.EMFactory;
-import batalhanaval.models.Jogador;
+import batalhanaval.models.Jogadores;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -46,7 +46,7 @@ public class novo_jogador extends JFrame {
         contentPane.add(voltar);
         
         salvar.setBounds(183, 126, 95, 31);
-        voltar.addActionListener(new ouvirSalvar());
+        salvar.addActionListener(new ouvirSalvar());
         contentPane.add(salvar);
         
         //label
@@ -77,7 +77,7 @@ public class novo_jogador extends JFrame {
             EntityManager ma1 = EMFactory.getEntityManager();
             JogadorDAO jo1 = new JogadorDAO(ma1);
             
-            Jogador j1 = new Jogador();
+            Jogadores j1 = new Jogadores();
             j1.setNome(nom1.getText());
             j1.setStatus((short)0);
             

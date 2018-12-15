@@ -1,22 +1,21 @@
 
 package batalhanaval.dao;
 
-import batalhanaval.models.Partida;
-import java.util.List;
+import batalhanaval.models.Arma;
 import javax.persistence.EntityManager;
 
 /**
  *
  * @author Zetsubou
  */
-public class JogoDAO {
+public class ArmaDAO {
     private EntityManager manager;
 	
-	public JogoDAO(EntityManager manager) {
+	public ArmaDAO(EntityManager manager) {
 		this.manager = manager;
 	}
     
-    public void salvaNovo(Partida p1){
+    public void salvaNovo(Arma p1){
         try{
             this.manager.getTransaction().begin();
             this.manager.persist(p1);
@@ -30,13 +29,4 @@ public class JogoDAO {
             this.manager.close();
         } 
     } 
-    
-    public List<Object[]> listaJogadoresDe(Partida jogo){
-        List<Object[]> jogadores = null;
-
-        jogadores = this.manager.createQuery("select j.nome from jogador j inner join j.jogo l  where l.jogo= :jogo",Object[].class)
-                        .setParameter("jogo",jogo.getId()).getResultList();
-        return jogadores;
-    }
-    
 }

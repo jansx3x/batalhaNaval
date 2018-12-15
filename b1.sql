@@ -12,7 +12,7 @@ USE `batalhanaval` ;
 -- Table `batalhanaval`.`jogo`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `batalhanaval`.`jogo` (
-  `idjogo` INT NOT NULL,
+  `idjogo` INT NOT NULL auto_increment,
   `nome` VARCHAR(45) NOT NULL,
   `status` TINYINT NOT NULL,
   PRIMARY KEY (`idjogo`))
@@ -23,7 +23,7 @@ ENGINE = InnoDB;
 -- Table `batalhanaval`.`jogador`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `batalhanaval`.`jogador` (
-  `idjogador` INT NOT NULL,
+  `idjogador` INT NOT NULL auto_increment,
   `nome` VARCHAR(45) NOT NULL,
   `status` TINYINT NOT NULL,
   `jogo_idjogo` INT NULL,
@@ -41,9 +41,10 @@ ENGINE = InnoDB;
 -- Table `batalhanaval`.`arma`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `batalhanaval`.`arma` (
-  `idarma` INT NOT NULL,
+  `idarma` INT NOT NULL auto_increment,
   `nome` VARCHAR(45) NOT NULL,
   `qnt` INT NOT NULL,
+  `tipo` VARCHAR(45) NOT NULL,
   `tamanho` INT NOT NULL,
   `jogador_idjogador` INT NOT NULL,
   PRIMARY KEY (`idarma`),
@@ -60,7 +61,7 @@ ENGINE = InnoDB;
 -- Table `batalhanaval`.`ataque`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `batalhanaval`.`ataque` (
-  `idataque` INT NOT NULL,
+  `idataque` INT NOT NULL auto_increment,
   `linha` INT NOT NULL,
   `coluna` INT NOT NULL,
   `jogador_idjogador` INT NOT NULL,
@@ -78,9 +79,9 @@ ENGINE = InnoDB;
 -- Table `batalhanaval`.`coord`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `batalhanaval`.`coord` (
-  `idcoord` INT NOT NULL,
+  `idcoord` INT NOT NULL auto_increment,
   `linha` INT NOT NULL,
-  `coluna` INT NOT NULL,
+  `coluna` VARCHAR(45) NOT NULL,
   `arma_idarma` INT NOT NULL,
   PRIMARY KEY (`idcoord`),
   INDEX `fk_coord_arma1_idx` (`arma_idarma` ASC),
@@ -90,4 +91,5 @@ CREATE TABLE IF NOT EXISTS `batalhanaval`.`coord` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
 

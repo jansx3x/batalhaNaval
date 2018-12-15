@@ -2,7 +2,7 @@
 package batalhanaval.gui;
 
 import javax.swing.*;
-import batalhanaval.models.Jogador;
+import batalhanaval.models.Jogadores;
 import batalhanaval.models.Partida;
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -18,7 +18,7 @@ public class m_principal extends JFrame {
     private JPanel contentPane = new JPanel();
     
     //lista de jogadores salvos
-    private JComboBox<Jogador> jComboBox1 = new JComboBox();
+    private JComboBox<Jogadores> jComboBox1 = new JComboBox();
     private JComboBox<Partida> jComboBox2 = new JComboBox();
     
     //labels

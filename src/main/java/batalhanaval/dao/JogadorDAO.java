@@ -1,7 +1,7 @@
 
 package batalhanaval.dao;
 
-import batalhanaval.models.Jogador;
+import batalhanaval.models.Jogadores;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 
@@ -16,7 +16,7 @@ public class JogadorDAO {
         this.manager = manager;
     }
     
-    public void salvaNovo(Jogador j1){
+    public void salvaNovo(Jogadores j1){
         try{
             this.manager.getTransaction().begin();
             this.manager.persist(j1);
@@ -30,4 +30,8 @@ public class JogadorDAO {
             this.manager.close();
         }      
     }  
+    
+    public Jogadores buscaPorId(Integer id) {
+		return manager.find(Jogadores.class, id);
+	}
 }

@@ -16,14 +16,14 @@ public class Ataque implements Serializable {
     private Integer idataque;
     
     @Column(name = "linha")
-    private String linha;
+    private int linha;
     
     @Column(name = "coluna")
-    private String coluna;
+    private int coluna;
     
     @ManyToOne
-    @JoinColumn(name = "jogador_idjogador")
-    private Jogador j1;
+    @JoinColumn(name = "jogador_idjogador", nullable=false)
+    private Jogadores j1;
 
     public Ataque(){
         
@@ -37,27 +37,27 @@ public class Ataque implements Serializable {
         this.idataque = idataque;
     }
 
-    public String getLinha() {
+    public int getLinha() {
         return linha;
     }
 
-    public void setLinha(String linha) {
+    public void setLinha(int linha) {
         this.linha = linha;
     }
 
-    public String getColuna() {
+    public int getColuna() {
         return coluna;
     }
 
-    public void setColuna(String coluna) {
+    public void setColuna(int coluna) {
         this.coluna = coluna;
     }
 
-    public Jogador getJ1() {
+    public Jogadores getJ1() {
         return j1;
     }
 
-    public void setJ1(Jogador j1) {
+    public void setJ1(Jogadores j1) {
         this.j1 = j1;
     }
     

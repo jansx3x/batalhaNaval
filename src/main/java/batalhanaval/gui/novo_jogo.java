@@ -71,11 +71,14 @@ public class novo_jogo extends JFrame {
     class ouvirSalvar implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent event){ 
+            EntityManager manager = EMFactory.getEntityManager();
+            
             Partida p1 = new Partida();
             p1.setNome(nom1.getText());
             p1.setStatus((short)1);
             
-            JogoDAO.getInstance().salvaNovo(p1);
+            JogoDAO dao = new JogoDAO(manager);
+            dao.salvaNovo(p1);
             
             clearFields();
             JOptionPane.showMessageDialog(contentPane,"Salvo com sucesso !");

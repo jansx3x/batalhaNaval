@@ -23,8 +23,8 @@ public class Partida implements Serializable {
     @Column(name = "status")
     private short status;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "jogo")
-    private List<Jogador> jogadores = new ArrayList<Jogador>();
+    @OneToMany(mappedBy = "jogoIdjogo", targetEntity = Jogadores.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Jogadores> jogadores = new ArrayList<Jogadores>();
 
     public Partida() {
   
@@ -46,12 +46,12 @@ public class Partida implements Serializable {
         this.nome = nome;
     }
 
-    public List<Jogador> getJogador(){
-		return jogadores;
+    public List<Jogadores> getJogador(){
+	return jogadores;
 	}
 	
-    public void setJogador(List<Jogador> jogadores) {
-            this.jogadores = jogadores;
+    public void setJogador(List<Jogadores> jogadores) {
+        this.jogadores = jogadores;
     }
 
     public short getStatus() {

@@ -34,7 +34,7 @@ public abstract class Arma implements Serializable {
     
     @ManyToOne
     @JoinColumn(name = "jogador_idjogador")
-    private Jogador idJogador;
+    private Jogadores idJogador;
     
     @Column(insertable=false, updatable=false)
     private String tipo;
@@ -47,11 +47,11 @@ public abstract class Arma implements Serializable {
         this.id = id;
     }
 
-    public Jogador getIdJogador() {
+    public Jogadores getIdJogador() {
         return idJogador;
     }
 
-    public void setIdJogador(Jogador idJogador) {
+    public void setIdJogador(Jogadores idJogador) {
         this.idJogador = idJogador;
     }
 

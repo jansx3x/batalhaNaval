@@ -3,7 +3,6 @@ package batalhanaval.models;
 import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Random;
 import javax.persistence.*;
 
 
@@ -31,8 +30,6 @@ public class Jogador implements Serializable {
     
     @OneToMany(mappedBy="jogador")
     private final List<Ataque> ataques = new ArrayList<>();
-    
-    private Random generate = new Random();
     
     public Jogador(){
         
@@ -80,8 +77,8 @@ public class Jogador implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 37 * hash + this.id;
+        int hash = 5;
+        hash = 73 * hash + this.id;
         return hash;
     }
 
@@ -102,5 +99,7 @@ public class Jogador implements Serializable {
         }
         return true;
     }
+
+
     
 }

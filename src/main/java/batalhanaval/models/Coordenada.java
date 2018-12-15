@@ -13,15 +13,13 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="coord")
-public class Coordenada {
+public class Coordenada{
+    
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idC;
-    
     private int linha;
-    
     private int coluna;
     
-    private Navio n;
 
     public int getIdC() {
         return idC;
@@ -46,15 +44,5 @@ public class Coordenada {
     public void setColuna(int coluna) {
         this.coluna = coluna;
     }
-
-    public Navio getN() {
-        return n;
-    }
-
-    public void setN(Navio n) {
-        this.n = n;
-    }
-    
-    
     
 }

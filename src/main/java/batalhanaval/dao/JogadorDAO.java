@@ -2,6 +2,7 @@
 package batalhanaval.dao;
 
 import batalhanaval.models.Jogadores;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
 
@@ -32,6 +33,11 @@ public class JogadorDAO {
     }  
     
     public Jogadores buscaPorId(Integer id) {
-		return manager.find(Jogadores.class, id);
-	}
+        return manager.find(Jogadores.class, id);
+    }
+    
+    public List<Jogadores> listarTodosJogos(){
+        return manager.createQuery("SELECT nome FROM jogador",Jogadores.class)
+            .getResultList();
+    }
 }

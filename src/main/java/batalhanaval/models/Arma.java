@@ -39,6 +39,7 @@ public abstract class Arma implements Serializable {
     @Column(insertable=false, updatable=false)
     private String tipo;
     
+    
     public int getId() {
         return id;
     }

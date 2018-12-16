@@ -24,9 +24,10 @@ public class ArmaDAO {
         {
             ex.printStackTrace();
             this.manager.getTransaction().rollback();
-        }finally 
-        {
-            this.manager.close();
-        } 
-    } 
+        }
+    }
+    
+    public Arma buscaPorId(Integer id) {
+        return manager.find(Arma.class, id);
+    }
 }

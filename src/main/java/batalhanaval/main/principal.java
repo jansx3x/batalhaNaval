@@ -3,12 +3,20 @@ package batalhanaval.main;
 
 import batalhanaval.dao.ArmaDAO;
 import batalhanaval.dao.AtaqueDAO;
+import batalhanaval.dao.CoordDAO;
 import batalhanaval.dao.JogadorDAO;
 import javax.swing.SwingUtilities;
 import batalhanaval.gui.m_principal;
 import batalhanaval.infra.EMFactory;
+import batalhanaval.models.Arma;
 import batalhanaval.models.Ataque;
+import batalhanaval.models.Coordenada;
+import batalhanaval.models.Cruzador;
+import batalhanaval.models.Encouracado;
+import batalhanaval.models.HidroAviao;
 import batalhanaval.models.Jogadores;
+import batalhanaval.models.PortaAviao;
+import batalhanaval.models.Submarino;
 import javax.persistence.EntityManager;
 /**
  *
@@ -39,8 +47,28 @@ public class principal {
         dao.salvaNovo(atk);*/
         
         //teste ARMA
+        
         EntityManager manager = EMFactory.getEntityManager();
         ArmaDAO dao = new ArmaDAO(manager);
+        CoordDAO dao1 = new CoordDAO(manager);
         
+        Coordenada coord = new Coordenada();
+        coord.setA1(dao.buscaPorId(1));
+        coord.setColuna(8);
+        coord.setLinha(4);
+        dao1.salvaNovo(coord);
+        
+        /*dao.salvaNovo(navio1);
+        Encouracado navio2 = new Encouracado();
+        dao.salvaNovo(navio2);
+        HidroAviao navio3 = new HidroAviao();
+        dao.salvaNovo(navio3);
+        PortaAviao navio4 = new PortaAviao();
+        dao.salvaNovo(navio4);
+        Submarino navio5 = new Submarino();
+        dao.salvaNovo(navio5);
+        */        
+        manager.close();
+   
     }
 }

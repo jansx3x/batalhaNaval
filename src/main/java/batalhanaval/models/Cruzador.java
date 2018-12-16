@@ -19,6 +19,10 @@ public class Cruzador extends Arma{
     @Column(name = "nome")
     private final String nomeNavio = "Cruzador";
 
+    public Cruzador(){
+        
+    }
+    
     public int getTamanhoNavio() {
             return tamanhoNavio;
     }
@@ -30,5 +34,11 @@ public class Cruzador extends Arma{
     public String getNomeNavio(){
             return nomeNavio;
     }   
+
+    @Override
+    public String toString() {
+        return "Cruzador{" + "qtdDeNavios=" + qtdDeNavios + ", tamanhoNavio=" + tamanhoNavio + ", nomeNavio=" + nomeNavio + '}';
+    }
        
+    
 }

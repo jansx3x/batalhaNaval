@@ -19,6 +19,10 @@ public class PortaAviao extends Arma{
     @Column(name = "nome")
     private final String nomeNavio = "Porta-Avião";
     
+    public PortaAviao(){
+        
+    }
+    
     public int getTamanhoNavio() {
             return tamanhoNavio;
     }

@@ -20,6 +20,10 @@ public class HidroAviao extends Arma{
     @Column(name = "nome")
     private final String nomeNavio = "Hidroavião";
     
+    public HidroAviao(){
+        
+    }
+    
     public int getTamanhoNavio() {
             return tamanhoNavio;
     }

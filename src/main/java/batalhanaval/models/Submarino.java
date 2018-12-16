@@ -19,6 +19,10 @@ public class Submarino extends Arma{
     @Column(name = "nome")
     private final String nomeNavio = "Submarino";
     
+    public Submarino(){
+        
+    }
+    
     public int getTamanhoNavio() {
             return tamanhoNavio;
     }

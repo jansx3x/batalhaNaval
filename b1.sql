@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `batalhanaval`.`arma` (
   `qnt` INT NOT NULL,
   `tipo` VARCHAR(45) NOT NULL,
   `tamanho` INT NOT NULL,
-  `jogador_idjogador` INT NOT NULL,
+  `jogador_idjogador` INT,
   PRIMARY KEY (`idarma`),
   INDEX `fk_arma_jogador1_idx` (`jogador_idjogador` ASC),
   CONSTRAINT `fk_arma_jogador1`

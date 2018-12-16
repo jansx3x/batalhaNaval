@@ -39,4 +39,24 @@ public class JogoDAO {
         return jogadores;
     }
     
+    public void att(Partida p1){
+        try{
+            this.manager.getTransaction().begin();
+            this.manager.merge(p1);
+            this.manager.getTransaction().commit();
+        }catch (Exception ex) 
+        {
+            ex.printStackTrace();
+            this.manager.getTransaction().rollback();
+        }finally 
+        {
+            this.manager.close();
+        } 
+    }
+    
+    public List<Partida> listarTodosJogos(){
+        return manager.createQuery("SELECT nome FROM jogo",Partida.class)
+            .getResultList();
+    }
+    
 }

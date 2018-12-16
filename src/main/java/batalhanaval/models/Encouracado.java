@@ -19,6 +19,10 @@ public class Encouracado extends Arma{
     @Column(name = "nome")
     private final String nomeNavio = "Encouraçado";
     
+    public Encouracado(){
+        
+    }
+    
     public int getTamanhoNavio() {
             return tamanhoNavio;
     }

@@ -30,16 +30,16 @@ public class tabuleiro extends JFrame{
     JLabel naviosRestantes = new JLabel("Meus Navios");
     JLabel tirosRestantes = new JLabel("Tiros Restantes");
     JLabel contNavios = new JLabel("");
-    JLabel contPA = new JLabel();
-    JLabel contER = new JLabel();
-    JLabel contCZ = new JLabel();
-    JLabel contSM = new JLabel();
-    JLabel contHA = new JLabel();
-    JLabel portaAviao = new JLabel();
-    JLabel encoura = new JLabel();
-    JLabel cruzad = new JLabel();
-    JLabel subma = new JLabel();
-    JLabel hidroAviao = new JLabel();
+    JLabel contPA = new JLabel("0");
+    JLabel contER = new JLabel("0");
+    JLabel contCZ = new JLabel("0");
+    JLabel contSM = new JLabel("0");
+    JLabel contHA = new JLabel("0");
+    JLabel portaAviao = new JLabel("Porta Aviões");
+    JLabel encoura = new JLabel("Encouraçado");
+    JLabel cruzad = new JLabel("Cruzadores");
+    JLabel subma = new JLabel("Submarinos");
+    JLabel hidroAviao = new JLabel("Hidro-Aviões");
     JLabel contTiros = new JLabel("");
     int contadorNavio = 12;
     int contadorTiros = 3;
@@ -57,9 +57,10 @@ public class tabuleiro extends JFrame{
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JLabel novoJogo = new JLabel(jogador.getNome());
         
         //painel
-        armas.setBounds(510, 140, 110, 70);
+        armas.setBounds(3, 58, 110, 70);
         armas.setLayout(new GridLayout(5, 2, 2, 2));
 
         //Container
@@ -84,7 +85,7 @@ public class tabuleiro extends JFrame{
         dist.setFocusable(false);
         
         att.setBounds(520, 214, 96, 35);
-	    att.setFocusable(false);
+	att.setFocusable(false);
         //att.addActionListener(this);
         
         voltar.setBounds(520, 254, 96, 35);
@@ -92,6 +93,9 @@ public class tabuleiro extends JFrame{
         //voltar.addActionListener(this);
         
         //label
+        novoJogo.setBounds(255, 10, 30, 18);
+        novoJogo.setFont(new Font("Roboto", Font.PLAIN, 18));
+        
         naviosRestantes.setFont(new Font("Roboto", Font.PLAIN, 15));
         naviosRestantes.setBounds(510, 50, 150, 18);
         
@@ -103,7 +107,7 @@ public class tabuleiro extends JFrame{
         contNavios.setText("" + contadorNavio);
         
         contTiros.setFont(new Font("Roboto", Font.BOLD, 18));
-	    contTiros.setBounds(530, 121, 20, 26);
+	contTiros.setBounds(530, 121, 20, 26);
         contTiros.setText("0" + contadorTiros);
 
         portaAviao.setFont(new Font("Roboto", Font.PLAIN, 15));
@@ -137,6 +141,7 @@ public class tabuleiro extends JFrame{
         armas.add(contCZ);
         armas.add(contSM);
         armas.add(contHA);
+        cp.add(armas);
         cp.add(grid);
         cp.add(dist);
         cp.add(att);
@@ -145,6 +150,7 @@ public class tabuleiro extends JFrame{
         cp.add(tirosRestantes);
         cp.add(contNavios);
         cp.add(contTiros);
+        cp.add(novoJogo);
         
         //método para escolher os locais
         //startJogo.distribuir;

@@ -63,8 +63,7 @@ public class novo_jogo extends JFrame {
     class ouvirVoltar implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent event){
-            novo_jogador n1 = new novo_jogador();
-            n1.dispose();
+            setVisible(false);
         }
     }
     

@@ -1,12 +1,18 @@
 
 package batalhanaval.gui;
 
+import batalhanaval.dao.JogadorDAO;
+import batalhanaval.dao.JogoDAO;
+import batalhanaval.infra.EMFactory;
 import javax.swing.*;
 import batalhanaval.models.Jogadores;
 import batalhanaval.models.Partida;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.EntityManager;
 
 /**
  *
@@ -109,15 +115,34 @@ public class m_principal extends JFrame {
         }
     }
     
-     class ouvirStart implements ActionListener{
+    class ouvirStart implements ActionListener{
         public void actionPerformed(ActionEvent event){
             SwingUtilities.invokeLater(new Runnable(){
-                public void run(){
-                    tabuleiro t2 = new tabuleiro((String)jComboBox1.getSelectedItem());
+                public void run(){  
+                    tabuleiro t2 = new tabuleiro((Partida)jComboBox2.getSelectedItem());
                     t2.setVisible(true);
                 }
             });
         }
     }
+     
+    public void addComboB1(){
+        EntityManager manager = EMFactory.getEntityManager();
+        JogadorDAO dao = new JogadorDAO(manager);
+        JogoDAO dao1 = new JogoDAO(manager);
+        List<Jogadores> jog = new ArrayList<>();
+        List<Partida> jog2 = new ArrayList<>();
+        
+        jog = dao.listarTodosJogadores();
+        for(int i = 0; i < jog.size(); i++) {
+            jComboBox1.addItem(jog.get(i));
+        }
+        
+        jog2 = dao1.listarTodosJogos();
+        for(int i = 0; i < jog2.size(); i++) {
+            jComboBox2.addItem(jog2.get(i));
+        }
+    }
+     
     
 }

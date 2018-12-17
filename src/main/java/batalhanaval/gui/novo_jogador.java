@@ -66,8 +66,9 @@ public class novo_jogador extends JFrame {
     
     class ouvirVoltar implements ActionListener{
         @Override
-        public void actionPerformed(ActionEvent event){
-            //fechar frame
+
+        public void actionPerformed(ActionEvent event){ 
+            setVisible(false);
         }
     }
     

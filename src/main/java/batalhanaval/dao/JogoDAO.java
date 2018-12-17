@@ -55,7 +55,7 @@ public class JogoDAO {
     }
     
     public List<Partida> listarTodosJogos(){
-        return manager.createQuery("SELECT nome FROM jogo",Partida.class)
+        return manager.createQuery("SELECT nome FROM jogo WHERE status = 0",Partida.class)
             .getResultList();
     }
     

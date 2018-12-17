@@ -24,12 +24,12 @@ import javax.persistence.EntityManager;
  */
 public class principal {
     public static void main(String[] args) {
-        /*SwingUtilities.invokeLater(new Runnable() {
+        SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 m_principal telaInicial = new m_principal();
                 telaInicial.setVisible(true);
             }
-        });	*/
+        });	
         
         //teste ATAQUE
         /*

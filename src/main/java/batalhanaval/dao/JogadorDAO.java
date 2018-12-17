@@ -36,7 +36,7 @@ public class JogadorDAO {
         return manager.find(Jogadores.class, id);
     }
     
-    public List<Jogadores> listarTodosJogos(){
+    public List<Jogadores> listarTodosJogadores(){
         return manager.createQuery("SELECT nome FROM jogador",Jogadores.class)
             .getResultList();
     }

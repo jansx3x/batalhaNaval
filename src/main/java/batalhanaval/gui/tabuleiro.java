@@ -2,6 +2,7 @@
 package batalhanaval.gui;
 
 import batalhanaval.main.startJogo;
+import batalhanaval.models.Jogadores;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -37,7 +38,7 @@ public class tabuleiro extends JFrame{
     
     startJogo jogo = new startJogo();
     
-    public tabuleiro(String nomeJogador){
+    public tabuleiro(Jogadores jogador){
         //JFrame
         setTitle("Batalha Naval");
         setSize(647, 415);

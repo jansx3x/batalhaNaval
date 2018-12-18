@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
 import javax.swing.*;
 
 /**
@@ -25,6 +26,7 @@ import javax.swing.*;
 public class DistArmas extends JFrame{
     int qntCoord = 0;
     int armaSelecionada = 0;
+    int ori = 0;
     PortaAviao pa = new PortaAviao();
     Encouracado ec = new Encouracado();
     Cruzador cr = new Cruzador();
@@ -40,7 +42,9 @@ public class DistArmas extends JFrame{
     JButton[][] Botoes = new JButton[10][10];
     JButton voltar = new JButton("Voltar");
     //Labels
-     public static JLabel select = new JLabel("Selecione uma armas");
+    public static JLabel select = new JLabel("Selecione uma armas:");
+    JLabel showOri = new JLabel("Orientação: ");
+    JLabel exp = new JLabel("<html>0 - horizontal<br/>1 - Vertical</html>");
     //combobox
     JComboBox cb1 = new JComboBox();
     Arma[] weapons = {
@@ -74,7 +78,13 @@ public class DistArmas extends JFrame{
         
         //label
         select.setFont(new Font("Roboto", Font.PLAIN, 15));
-        select.setBounds(520, 194, 150, 35);
+        select.setBounds(520, 192, 150, 35);
+        
+        showOri.setFont(new Font("Roboto", Font.PLAIN, 12));
+        showOri.setBounds(520, 252, 100, 26);
+        showOri.setText("Orientação: " + ori);
+        exp.setFont(new Font("Roboto", Font.PLAIN, 12));
+        exp.setBounds(520, 280, 100, 26);
         
         //combox
         cb1.setBounds(520, 220, 150, 35);
@@ -85,6 +95,8 @@ public class DistArmas extends JFrame{
         cp.add(grid);
         cp.add(select);
         cp.add(cb1);
+        cp.add(showOri);
+        cp.add(exp);
     }
     
     class comboArmas implements ItemListener{
@@ -119,7 +131,9 @@ public class DistArmas extends JFrame{
                         c1.setColuna(coluna);
                         c1.setLinha(linha);
                         c1.setA1((Arma) cb1.getSelectedItem());
-                        ct1.salvaCoord(c1);
+                        if(TemVizinhos(c1)) {
+                            ct1.salvaCoord(c1);
+                        }
                         JOptionPane.showMessageDialog(null,"Salvo");
                     }
                 }
@@ -131,6 +145,62 @@ public class DistArmas extends JFrame{
         for(int i = 0; i < weapons.length; i++) {
             cb1.addItem(weapons[i]);
         }
+    }
+    
+    int getLinha(Coordenada c1){
+        return c1.getLinha();
+    }
+    
+    int getColuna(Coordenada c1){
+        return c1.getColuna();
+    }
+    
+    int[] Norte(Coordenada c1){
+        int cdn[]= new int[2];
+        if(getLinha(c1) == 0){
+            return null;
+        }else{
+            cdn[0] = getLinha(c1) - 1;
+            cdn[1] = getColuna(c1);
+        }
+        return cdn;
+    } 
+    
+    int[] Sul(Coordenada c1){
+        int cdn[]= new int[2];
+        if(getLinha(c1) == 9){
+            return null;
+        }else{
+            cdn[0] = getLinha(c1) + 1;
+            cdn[1] = getColuna(c1);
+        }
+        return cdn;
+    }
+    
+    int[] Leste(Coordenada c1){
+        int cdn[]= new int[2];
+        if(getColuna(c1) == 9){
+            return null;
+        }else{
+            cdn[0] = getLinha(c1);
+            cdn[1] = getColuna(c1) + 1;
+        }
+        return cdn;
+    }
+    
+    int[] Oeste(Coordenada c1){
+        int cdn[]= new int[2];
+        if(getColuna(c1) == 0){
+            return null;
+        }else{
+            cdn[0] = getLinha(c1);
+            cdn[1] = getColuna(c1) - 1;
+        }
+        return cdn;
+    }
+    
+    public boolean TemVizinhos(Coordenada c1){
+        return true;
     }
     
 }

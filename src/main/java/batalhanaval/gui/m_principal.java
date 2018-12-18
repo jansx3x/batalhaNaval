@@ -8,6 +8,8 @@ import batalhanaval.models.Partida;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /**
  *
@@ -47,9 +49,16 @@ public class m_principal extends JFrame {
         contentPane.setLayout(null);
         setContentPane(contentPane);
         
-        //combobox
+        //Textfield
         nome1.setBounds(25,125,223,29);
         nome1.setFocusable(true);
+        nome1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+               if (evt.getKeyCode() == KeyEvent.VK_ENTER){
+                processaTexto();
+               }
+            }
+        });
         contentPane.add(nome1);
         
         //label
@@ -71,7 +80,11 @@ public class m_principal extends JFrame {
     
     class ouvirStart implements ActionListener{
         public void actionPerformed(ActionEvent event){
-            
+            processaTexto();
+        }
+    }
+    
+    private void processaTexto(){
             new1.setNome(nome1.getText());
             c1.attJogo(new1);
             p1 = c1.findJogador(1);
@@ -83,7 +96,7 @@ public class m_principal extends JFrame {
                     tabuleiro t2 = new tabuleiro(new1, p1);
                     t2.setVisible(true);
                 }
-            });}
-        }
+            });
+    }
 }
 

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -25,7 +26,7 @@ public class Coordenada implements Serializable{
     private int linha;
     private int coluna;
     
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="arma_idarma")
     private Arma a1;
 

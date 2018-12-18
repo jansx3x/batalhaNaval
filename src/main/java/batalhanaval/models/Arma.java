@@ -6,10 +6,14 @@
 package batalhanaval.models;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,6 +21,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -35,6 +40,9 @@ public abstract class Arma implements Serializable {
     @ManyToOne
     @JoinColumn(name = "jogador_idjogador")
     private Jogadores idJogador;
+    
+    @OneToMany(mappedBy = "a1", targetEntity = Arma.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private final List<Arma> coords = new ArrayList<>();
     
     @Column(insertable=false, updatable=false)
     private int tipo;

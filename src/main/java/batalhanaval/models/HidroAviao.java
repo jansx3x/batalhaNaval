@@ -4,14 +4,13 @@ package batalhanaval.models;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
 /**
  *
  * @author Zetsubou
  */
 @Entity
-@DiscriminatorValue(value = "H")
+@DiscriminatorValue(value = "5")
 public class HidroAviao extends Arma{
     @Column(name = "qnt")
     private final int qtdDeNavios = 2;
@@ -34,6 +33,10 @@ public class HidroAviao extends Arma{
 
     public String getNomeNavio(){
             return nomeNavio;
-    }     
-      
+    }    
+
+    @Override
+    public String toString() {
+        return "HidroAviao";
+    }   
 }

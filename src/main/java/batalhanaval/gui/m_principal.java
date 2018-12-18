@@ -1,10 +1,9 @@
 
 package batalhanaval.gui;
 
-import batalhanaval.main.GenericComboModel;
 import batalhanaval.main.controle;
-import javax.swing.*;
 import batalhanaval.models.Jogadores;
+import javax.swing.*;
 import batalhanaval.models.Partida;
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -26,13 +25,13 @@ public class m_principal extends JFrame {
     
     //labels
     private JLabel titulo = new JLabel("Batalha Naval");
-    private JLabel labelUsuario = new JLabel("Escolha o usuário:");
-    private JLabel labelJogo = new JLabel("Escolha um jogo:");
+    private JLabel labelUsuario = new JLabel("Nome do Jogo:");
     
     //botões
     private JButton start = new JButton("Começar");
-    private JButton nJogador = new JButton("Novo Jogador");
-    private JButton nJogo = new JButton("Novo Jogo");
+    
+    Partida new1 = new Partida();
+    Jogadores p1 = new Jogadores();
     
     public m_principal(){
         
@@ -41,7 +40,7 @@ public class m_principal extends JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100,100,507,409);
+        setBounds(100,100,407,309);
         
         //painel
         contentPane.setBorder(null);
@@ -49,82 +48,42 @@ public class m_principal extends JFrame {
         setContentPane(contentPane);
         
         //combobox
-        nome1.setBounds(133,141,223,29);
+        nome1.setBounds(25,125,223,29);
         nome1.setFocusable(true);
         contentPane.add(nome1);
         
-        addComboB1();
-        
         //label
         titulo.setFont(new Font("Arial", Font.BOLD, 24));
-        titulo.setBounds(182,31,160,29);
+        titulo.setBounds(132,31,160,29);
         contentPane.add(titulo);
         
         labelUsuario.setFont(new Font("Arial", Font.PLAIN, 14));
-        labelUsuario.setBounds(135,116,155,14);
+        labelUsuario.setBounds(25,106,155,14);
         contentPane.add(labelUsuario);
         
         //botões
-        start.setBounds(200, 246, 111, 36);
+        start.setBounds(145, 206, 111, 36);
         start.setFont(new Font("Verdana", Font.PLAIN, 12));
         start.setFocusable(false);
         start.addActionListener(new ouvirStart());
-        contentPane.add(start);
-    }
-    
-    class ouvirJogador implements ActionListener{ 
-        public void actionPerformed(ActionEvent event){
-            SwingUtilities.invokeLater(new Runnable() {
-		public void run() {
-                    novo_jogador n1 = new novo_jogador();
-                    n1.setVisible(true);					
-		}
-            });
-        }
-    }
-    
-    class ouvirJogo implements ActionListener{
-        public void actionPerformed(ActionEvent event){
-            SwingUtilities.invokeLater(new Runnable(){
-                public void run(){
-                    novo_jogo n2 = new novo_jogo();
-                    n2.setVisible(true);
-                }
-            });
-        }
+        contentPane.add(start);    
     }
     
     class ouvirStart implements ActionListener{
         public void actionPerformed(ActionEvent event){
             
-            
-            
-            /*Partida p1 = (Partida)jComboBox2.getSelectedItem();
-            if(p1.getCountJogadores() >= 2){
-                JOptionPane.showMessageDialog(contentPane,"Já tem 2 jogadores na partida!");
-            }else{
-                Jogadores j1 = (Jogadores)jComboBox1.getSelectedItem();
-                j1.setJogoIdjogo(p1);
-                c1.attJogador(j1);
-                p1.adiciona(j1);
-                p1.setCountJogadores(1);
-                c1.attJogo(p1);
-            
+            new1.setNome(nome1.getText());
+            c1.attJogo(new1);
+            p1 = c1.findJogador(1);
+            p1.setJogoIdjogo(new1);
+            c1.attJogador(p1);
+
             SwingUtilities.invokeLater(new Runnable(){
                 public void run(){  
-                    tabuleiro t2 = new tabuleiro((Partida)jComboBox2.getSelectedItem());
+                    tabuleiro t2 = new tabuleiro(new1, p1);
                     t2.setVisible(true);
                 }
-            });}*/
+            });}
         }
-    }
-     
-    public void addComboB1(){
-        /*
-        jComboBox1.setModel(new GenericComboModel<Jogadores>(c1.retornaListaJogadores()));
-    
-        jComboBox2.setModel(new GenericComboModel<Partida>(c1.retornaListaJogos()));*/
-    }
-     
-    
 }
+

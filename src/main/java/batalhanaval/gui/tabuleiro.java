@@ -7,6 +7,8 @@ import batalhanaval.models.Partida;
 import java.awt.Container;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.*;
 
 /**
@@ -17,7 +19,7 @@ public class tabuleiro extends JFrame{
     //painel
     JPanel grid = new JPanel();
     JPanel jcp = new JPanel();
-    JPanel armas = new JPanel();
+    JPanel armas1 = new JPanel();
     Container cp;
     
     //botões
@@ -50,19 +52,20 @@ public class tabuleiro extends JFrame{
     
     startJogo jogo = new startJogo();
     
-    public tabuleiro(Partida jogador){
+    public tabuleiro(Partida jogador, Jogadores p1){
+       
         //JFrame
         setTitle("Batalha Naval");
-        setSize(951, 488);
+        setSize(740, 480);
         setLocationRelativeTo(null);
         setResizable(false);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         JLabel novoJogo = new JLabel(jogador.getNome());
         
         
         //painel
-        armas.setBounds(3, 58, 110, 70);
-        armas.setLayout(new GridLayout(5, 2, 2, 2));
+        armas1.setBounds(515, 250, 180, 70);
+        armas1.setLayout(new GridLayout(5, 2, 5, 0));
 
         //Container
         setContentPane(jcp);
@@ -82,67 +85,58 @@ public class tabuleiro extends JFrame{
             }
         }
         
-        dist.setBounds(520, 194, 96, 35);
+        dist.setBounds(520, 194, 150, 35);
+        dist.addActionListener(new ouvirDist());
         dist.setFocusable(false);
         
-        att.setBounds(520, 214, 96, 35);
+        att.setBounds(400, 395, 96, 35);
 	att.setFocusable(false);
         //att.addActionListener(this);
         
-        voltar.setBounds(520, 254, 96, 35);
+        voltar.setBounds(9, 395, 96, 35);
         voltar.setFocusable(false);
-        //voltar.addActionListener(this);
+        voltar.addActionListener(new ouvirVoltar());
         
         //label
-        novoJogo.setBounds(255, 10, 150, 18);
+        novoJogo.setBounds(230, 10, 150, 30);
         novoJogo.setFont(new Font("Roboto", Font.PLAIN, 18));
         
-        naviosRestantes.setFont(new Font("Roboto", Font.PLAIN, 15));
-        naviosRestantes.setBounds(510, 50, 150, 18);
-        
         tirosRestantes.setFont(new Font("Roboto", Font.PLAIN, 15));
-        tirosRestantes.setBounds(510, 100, 118, 18);
+        tirosRestantes.setBounds(540, 60, 150, 18);
         
-        contNavios.setFont(new Font("Roboto", Font.BOLD, 18));
-        contNavios.setBounds(530, 68, 20, 26);
-        contNavios.setText("" + contadorNavio);
+        naviosRestantes.setFont(new Font("Roboto", Font.PLAIN, 15));
+        naviosRestantes.setBounds(550, 110, 118, 18);
         
         contTiros.setFont(new Font("Roboto", Font.BOLD, 18));
-	contTiros.setBounds(530, 121, 20, 26);
+        contTiros.setBounds(570, 78, 20, 26);
         contTiros.setText("0" + contadorTiros);
+        
+        contNavios.setFont(new Font("Roboto", Font.BOLD, 18));
+	contNavios.setBounds(570, 131, 20, 26);
+        contNavios.setText("" + contadorNavio);
 
         portaAviao.setFont(new Font("Roboto", Font.PLAIN, 15));
-        portaAviao.setBounds(518, 138, 100, 18);
         encoura.setFont(new Font("Roboto", Font.PLAIN, 15));
-        encoura.setBounds(518, 145, 100, 18);
         cruzad.setFont(new Font("Roboto", Font.PLAIN, 15));
-        cruzad.setBounds(518, 168, 100, 18);
         subma.setFont(new Font("Roboto", Font.PLAIN, 15));
-        subma.setBounds(518, 190, 100, 18);
         hidroAviao.setFont(new Font("Roboto", Font.PLAIN, 15));
-        hidroAviao.setBounds(518, 210, 100, 18);
         contPA.setFont(new Font("Roboto", Font.PLAIN, 15));
-        contPA.setBounds(508, 138, 100, 18);
         contER.setFont(new Font("Roboto", Font.PLAIN, 15));
-        contER.setBounds(508, 145, 100, 18);
         contCZ.setFont(new Font("Roboto", Font.PLAIN, 15));
-        contCZ.setBounds(508, 168, 100, 18);
         contSM.setFont(new Font("Roboto", Font.PLAIN, 15));
-        contSM.setBounds(508, 190, 100, 18);
         contHA.setFont(new Font("Roboto", Font.PLAIN, 15));
-        contHA.setBounds(508, 210, 100, 18);
 
-        armas.add(portaAviao);
-        armas.add(encoura);
-        armas.add(cruzad);
-        armas.add(subma);
-        armas.add(hidroAviao);
-        armas.add(contPA);
-        armas.add(contER);
-        armas.add(contCZ);
-        armas.add(contSM);
-        armas.add(contHA);
-        cp.add(armas);
+        armas1.add(contPA);
+        armas1.add(portaAviao);
+        armas1.add(contER);
+        armas1.add(encoura);
+        armas1.add(contCZ);
+        armas1.add(cruzad);
+        armas1.add(contSM);
+        armas1.add(subma);
+        armas1.add(contHA);
+        armas1.add(hidroAviao);
+        cp.add(armas1);
         cp.add(grid);
         cp.add(dist);
         cp.add(att);
@@ -157,5 +151,19 @@ public class tabuleiro extends JFrame{
         //startJogo.distribuir;
         //jogo.iniciaJogo(vetor);
         
+    }
+    
+    class ouvirDist implements ActionListener{
+        public void actionPerformed(ActionEvent event){
+            DistArmas a = new DistArmas();
+            a.setVisible(true);
+        }
+    }
+    
+    class ouvirVoltar implements ActionListener{
+        public void actionPerformed(ActionEvent event){
+            setVisible(false);
+            System.exit(0);
+        }
     }
 }

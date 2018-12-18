@@ -20,11 +20,6 @@ public class Partida implements Serializable {
     @Column(name = "nome")
     private String nome;
     
-    private int countJogadores;
-    
-    @Column(name = "status")
-    private short status;
-    
     @OneToMany(mappedBy = "jogoIdjogo", targetEntity = Jogadores.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Jogadores> jogadores = new ArrayList<>();
     
@@ -59,14 +54,6 @@ public class Partida implements Serializable {
         jogadores.add(joga);
     }
 
-    public short getStatus() {
-        return status;
-    }
-
-    public void setStatus(short status) {
-        this.status = status;
-    }
-
     public List<Ataque> getAtaques2() {
         return ataques2;
     }
@@ -74,17 +61,7 @@ public class Partida implements Serializable {
     public void adicionaAtaques2(Ataque atk2) {
         ataques2.add(atk2);
     }
-
-    public int getCountJogadores() {
-        return countJogadores;
-    }
-
-    public void setCountJogadores(int countJogadores) {
-        this.countJogadores = countJogadores++;
-    }
-    
-    
-
+ 
     @Override
     public int hashCode() {
         int hash = 7;

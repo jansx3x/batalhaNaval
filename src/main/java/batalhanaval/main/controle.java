@@ -1,9 +1,11 @@
 
 package batalhanaval.main;
 
+import batalhanaval.dao.CoordDAO;
 import batalhanaval.dao.JogadorDAO;
 import batalhanaval.dao.JogoDAO;
 import batalhanaval.infra.EMFactory;
+import batalhanaval.models.Coordenada;
 import batalhanaval.models.Jogadores;
 import batalhanaval.models.Partida;
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ public class controle {
     EntityManager manager = EMFactory.getEntityManager();
     JogadorDAO dao = new JogadorDAO(manager);
     JogoDAO dao1 = new JogoDAO(manager);
+    CoordDAO dao2 = new CoordDAO(manager);
     
     
     public List<Jogadores> retornaListaJogadores (){
@@ -47,11 +50,23 @@ public class controle {
         return strList;
     }
     
-    public void attJogador(Jogadores j1){
-        dao.att(j1);
+    public Partida findJogo(int j1){
+       return dao1.porId(j1);
     }
     
     public void attJogo(Partida j1){
         dao1.att(j1);
     }
+    
+    public void attJogador(Jogadores j1){
+        dao.att(j1);
+    }
+    
+     public Jogadores findJogador(int j1){
+        return dao.buscaPorId(j1);
+    }
+     
+     public void salvaCoord(Coordenada c2){
+         dao2.salvaNovo(c2);
+     }
 }

@@ -10,7 +10,7 @@ import javax.persistence.Entity;
  * @author Zetsubou
  */
 @Entity
-@DiscriminatorValue(value = "P")
+@DiscriminatorValue(value = "1")
 public class PortaAviao extends Arma{
     @Column(name = "qnt")
     private final int qtdDeNavios = 2;
@@ -33,5 +33,10 @@ public class PortaAviao extends Arma{
 
     public String getNomeNavio(){
             return nomeNavio;
-    }        
+    }  
+
+    @Override
+    public String toString() {
+        return "PortaAviao";
+    }
 }

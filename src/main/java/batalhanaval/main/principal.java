@@ -1,23 +1,10 @@
 
 package batalhanaval.main;
 
-import batalhanaval.dao.ArmaDAO;
-import batalhanaval.dao.AtaqueDAO;
-import batalhanaval.dao.CoordDAO;
-import batalhanaval.dao.JogadorDAO;
 import javax.swing.SwingUtilities;
-import batalhanaval.gui.m_principal;
-import batalhanaval.infra.EMFactory;
-import batalhanaval.models.Arma;
-import batalhanaval.models.Ataque;
-import batalhanaval.models.Coordenada;
-import batalhanaval.models.Cruzador;
-import batalhanaval.models.Encouracado;
-import batalhanaval.models.HidroAviao;
+import batalhanaval.gui.tabuleiro;
 import batalhanaval.models.Jogadores;
-import batalhanaval.models.PortaAviao;
-import batalhanaval.models.Submarino;
-import javax.persistence.EntityManager;
+import batalhanaval.models.Partida;
 /**
  *
  * @author Zetsubou
@@ -26,7 +13,10 @@ public class principal {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                m_principal telaInicial = new m_principal();
+                controle c1 = new controle();
+                Partida p1 = (c1.findJogo(1));
+                Jogadores j1 = (c1.findJogador(1));
+                tabuleiro telaInicial = new tabuleiro(p1, j1);
                 telaInicial.setVisible(true);
             }
         });	
@@ -47,7 +37,7 @@ public class principal {
         dao.salvaNovo(atk);*/
         
         //teste ARMA
-        
+        /*
         EntityManager manager = EMFactory.getEntityManager();
         ArmaDAO dao = new ArmaDAO(manager);
         CoordDAO dao1 = new CoordDAO(manager);
@@ -67,8 +57,8 @@ public class principal {
         dao.salvaNovo(navio4);
         Submarino navio5 = new Submarino();
         dao.salvaNovo(navio5);
-        */        
-        manager.close();
+                
+        manager.close();*/
    
     }
 }

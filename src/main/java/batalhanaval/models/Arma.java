@@ -25,19 +25,19 @@ import javax.persistence.Table;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipo", length = 1, discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorColumn(name = "tipo", length = 1, discriminatorType = DiscriminatorType.INTEGER)
 @Table(name="arma")
 public abstract class Arma implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="idarma")
     private int id;
-    
+  
     @ManyToOne
     @JoinColumn(name = "jogador_idjogador")
     private Jogadores idJogador;
     
     @Column(insertable=false, updatable=false)
-    private String tipo;
+    private int tipo;
     
     
     public int getId() {
@@ -56,14 +56,14 @@ public abstract class Arma implements Serializable {
         this.idJogador = idJogador;
     }
 
-    public String getTipo() {
+    public int getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(int tipo) {
         this.tipo = tipo;
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 7;

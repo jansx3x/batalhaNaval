@@ -54,4 +54,8 @@ public class JogoDAO {
             
     }
     
+    public Partida porId(int id) {
+	return this.manager.find(Partida.class,id);
+	}
+    
 }

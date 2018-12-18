@@ -1,10 +1,57 @@
 
 package batalhanaval.main;
 
+import batalhanaval.dao.JogadorDAO;
+import batalhanaval.dao.JogoDAO;
+import batalhanaval.infra.EMFactory;
+import batalhanaval.models.Jogadores;
+import batalhanaval.models.Partida;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.EntityManager;
+
 /**
  *
  * @author Zetsubou
  */
 public class controle {
+    EntityManager manager = EMFactory.getEntityManager();
+    JogadorDAO dao = new JogadorDAO(manager);
+    JogoDAO dao1 = new JogoDAO(manager);
     
+    
+    public List<Jogadores> retornaListaJogadores (){
+        List<Jogadores> strList = new ArrayList<>();
+        List<Jogadores> jog = dao.listarTodosJogadores().getResultList();
+        
+        for(Jogadores j1 : jog) {
+            Jogadores j2 = new Jogadores();
+            j2.setId(j1.getId());
+            j2.setNome(j1.getNome());
+            strList.add(j2);
+        }
+        return strList;
+    }
+    
+    public List<Partida> retornaListaJogos(){
+        List<Partida> strList = new ArrayList<>();
+        List<Partida> jog = dao1.listarTodosJogos().getResultList();
+        
+        for(Partida j1 : jog) {
+            Partida j2 = new Partida();
+            j2.setId(j1.getId());
+            j2.setNome(j1.getNome());
+            strList.add(j2);
+        }
+        
+        return strList;
+    }
+    
+    public void attJogador(Jogadores j1){
+        dao.att(j1);
+    }
+    
+    public void attJogo(Partida j1){
+        dao1.att(j1);
+    }
 }

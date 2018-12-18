@@ -1,18 +1,14 @@
 
 package batalhanaval.gui;
 
-import batalhanaval.dao.JogadorDAO;
-import batalhanaval.dao.JogoDAO;
-import batalhanaval.infra.EMFactory;
+import batalhanaval.main.GenericComboModel;
+import batalhanaval.main.controle;
 import javax.swing.*;
 import batalhanaval.models.Jogadores;
 import batalhanaval.models.Partida;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.util.ArrayList;
-import java.util.List;
-import javax.persistence.EntityManager;
 
 /**
  *
@@ -20,12 +16,13 @@ import javax.persistence.EntityManager;
  */
 public class m_principal extends JFrame {
     
+    controle c1 = new controle();
+    
     //painel
     private JPanel contentPane = new JPanel();
     
     //lista de jogadores salvos
-    private JComboBox<Jogadores> jComboBox1 = new JComboBox();
-    private JComboBox<Partida> jComboBox2 = new JComboBox();
+    private JTextField nome1 = new JTextField(30);
     
     //labels
     private JLabel titulo = new JLabel("Batalha Naval");
@@ -52,13 +49,11 @@ public class m_principal extends JFrame {
         setContentPane(contentPane);
         
         //combobox
-        jComboBox1.setBounds(133,141,223,29);
-        jComboBox1.setFocusable(false);
-        contentPane.add(jComboBox1);
+        nome1.setBounds(133,141,223,29);
+        nome1.setFocusable(true);
+        contentPane.add(nome1);
         
-        jComboBox2.setBounds(133,201,223,29);
-        jComboBox2.setFocusable(false);
-        contentPane.add(jComboBox2);
+        addComboB1();
         
         //label
         titulo.setFont(new Font("Arial", Font.BOLD, 24));
@@ -69,28 +64,12 @@ public class m_principal extends JFrame {
         labelUsuario.setBounds(135,116,155,14);
         contentPane.add(labelUsuario);
         
-        labelJogo.setFont(new Font("Arial", Font.PLAIN, 14));
-        labelJogo.setBounds(135, 176, 155, 15);
-        contentPane.add(labelJogo);
-        
         //botões
         start.setBounds(200, 246, 111, 36);
         start.setFont(new Font("Verdana", Font.PLAIN, 12));
         start.setFocusable(false);
         start.addActionListener(new ouvirStart());
         contentPane.add(start);
-        
-        nJogador.setFont(new Font("Verdana", Font.PLAIN, 12));
-        nJogador.setBounds(100, 298, 121, 36);
-        nJogador.setFocusable(false);
-        nJogador.addActionListener(new ouvirJogador());
-        contentPane.add(nJogador);
-        
-        nJogo.setBounds(272, 298, 111, 36);
-        nJogo.setFocusable(false);
-        nJogo.setFont(new Font("Verdana", Font.PLAIN, 12));
-        nJogo.addActionListener(new ouvirJogo());
-        contentPane.add(nJogo);
     }
     
     class ouvirJogador implements ActionListener{ 
@@ -117,31 +96,34 @@ public class m_principal extends JFrame {
     
     class ouvirStart implements ActionListener{
         public void actionPerformed(ActionEvent event){
+            
+            
+            
+            /*Partida p1 = (Partida)jComboBox2.getSelectedItem();
+            if(p1.getCountJogadores() >= 2){
+                JOptionPane.showMessageDialog(contentPane,"Já tem 2 jogadores na partida!");
+            }else{
+                Jogadores j1 = (Jogadores)jComboBox1.getSelectedItem();
+                j1.setJogoIdjogo(p1);
+                c1.attJogador(j1);
+                p1.adiciona(j1);
+                p1.setCountJogadores(1);
+                c1.attJogo(p1);
+            
             SwingUtilities.invokeLater(new Runnable(){
                 public void run(){  
                     tabuleiro t2 = new tabuleiro((Partida)jComboBox2.getSelectedItem());
                     t2.setVisible(true);
                 }
-            });
+            });}*/
         }
     }
      
     public void addComboB1(){
-        EntityManager manager = EMFactory.getEntityManager();
-        JogadorDAO dao = new JogadorDAO(manager);
-        JogoDAO dao1 = new JogoDAO(manager);
-        List<Jogadores> jog = new ArrayList<>();
-        List<Partida> jog2 = new ArrayList<>();
-        
-        jog = dao.listarTodosJogadores();
-        for(int i = 0; i < jog.size(); i++) {
-            jComboBox1.addItem(jog.get(i));
-        }
-        
-        jog2 = dao1.listarTodosJogos();
-        for(int i = 0; i < jog2.size(); i++) {
-            jComboBox2.addItem(jog2.get(i));
-        }
+        /*
+        jComboBox1.setModel(new GenericComboModel<Jogadores>(c1.retornaListaJogadores()));
+    
+        jComboBox2.setModel(new GenericComboModel<Partida>(c1.retornaListaJogos()));*/
     }
      
     

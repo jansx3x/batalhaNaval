@@ -4,6 +4,7 @@ package batalhanaval.dao;
 import batalhanaval.models.Partida;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -25,10 +26,7 @@ public class JogoDAO {
         {
             ex.printStackTrace();
             this.manager.getTransaction().rollback();
-        }finally 
-        {
-            this.manager.close();
-        } 
+        }
     } 
     
     public List<Object[]> listaJogadoresDe(Partida jogo){
@@ -48,15 +46,12 @@ public class JogoDAO {
         {
             ex.printStackTrace();
             this.manager.getTransaction().rollback();
-        }finally 
-        {
-            this.manager.close();
         } 
     }
     
-    public List<Partida> listarTodosJogos(){
-        return manager.createQuery("SELECT nome FROM jogo WHERE status = 0",Partida.class)
-            .getResultList();
+    public TypedQuery<Partida> listarTodosJogos(){
+        return manager.createQuery("FROM Partida WHERE status = 1",Partida.class);
+            
     }
     
 }

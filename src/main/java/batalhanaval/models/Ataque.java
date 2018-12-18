@@ -2,6 +2,7 @@
 package batalhanaval.models;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.*;
 /**
  *
@@ -24,7 +25,11 @@ public class Ataque implements Serializable {
     @ManyToOne
     @JoinColumn(name = "jogador_idjogador", nullable=false)
     private Jogadores j1;
-
+    
+    @ManyToOne
+    @JoinColumn(name = "idPartida", nullable=false)
+    private Partida ataques2;
+    
     public Ataque(){
         
     }
@@ -60,10 +65,45 @@ public class Ataque implements Serializable {
     public void setJ1(Jogadores j1) {
         this.j1 = j1;
     }
+
+    public Partida getAtaques2() {
+        return ataques2;
+    }
+
+    public void setAtaques2(Partida ataques2) {
+        this.ataques2 = ataques2;
+    }
+    
+    
     
     @Override
     public String toString() {
         return "batalhanaval.models.Ataque[ idataque=" + idataque + " ]";
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 41 * hash + Objects.hashCode(this.idataque);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Ataque other = (Ataque) obj;
+        if (!Objects.equals(this.idataque, other.idataque)) {
+            return false;
+        }
+        return true;
     }
     
     

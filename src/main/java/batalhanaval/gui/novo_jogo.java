@@ -81,6 +81,10 @@ public class novo_jogo extends JFrame {
             
             clearFields();
             JOptionPane.showMessageDialog(contentPane,"Salvo com sucesso !");
+            
+            m_principal n1 = new m_principal();
+            n1.addComboB1();
+            setVisible(false);
         }
     }
     

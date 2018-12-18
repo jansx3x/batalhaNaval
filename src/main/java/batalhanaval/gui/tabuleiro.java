@@ -53,11 +53,12 @@ public class tabuleiro extends JFrame{
     public tabuleiro(Partida jogador){
         //JFrame
         setTitle("Batalha Naval");
-        setSize(647, 415);
+        setSize(951, 488);
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JLabel novoJogo = new JLabel(jogador.getNome());
+        
         
         //painel
         armas.setBounds(3, 58, 110, 70);
@@ -93,7 +94,7 @@ public class tabuleiro extends JFrame{
         //voltar.addActionListener(this);
         
         //label
-        novoJogo.setBounds(255, 10, 30, 18);
+        novoJogo.setBounds(255, 10, 150, 18);
         novoJogo.setFont(new Font("Roboto", Font.PLAIN, 18));
         
         naviosRestantes.setFont(new Font("Roboto", Font.PLAIN, 15));

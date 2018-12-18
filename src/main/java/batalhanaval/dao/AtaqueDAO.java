@@ -24,9 +24,6 @@ public class AtaqueDAO {
         {
             ex.printStackTrace();
             this.manager.getTransaction().rollback();
-        }finally 
-        {
-            this.manager.close();
-        } 
+        }
     } 
 }

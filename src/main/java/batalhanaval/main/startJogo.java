@@ -1,12 +1,6 @@
 
 package batalhanaval.main;
 
-import batalhanaval.models.Cruzador;
-import batalhanaval.models.Encouracado;
-import batalhanaval.models.HidroAviao;
-import batalhanaval.models.PortaAviao;
-import batalhanaval.models.Submarino;
-import java.util.ArrayList;
 import java.util.Random;
 
 /**

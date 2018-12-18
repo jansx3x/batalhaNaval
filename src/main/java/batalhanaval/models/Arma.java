@@ -41,8 +41,8 @@ public abstract class Arma implements Serializable {
     @JoinColumn(name = "jogador_idjogador")
     private Jogadores idJogador;
     
-    @OneToMany(mappedBy = "a1", targetEntity = Arma.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private final List<Arma> coords = new ArrayList<>();
+    @OneToMany(mappedBy = "arma_idarma", targetEntity = Coordenada.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true )
+    private List<Arma> coords = new ArrayList<>();
     
     @Column(insertable=false, updatable=false)
     private int tipo;

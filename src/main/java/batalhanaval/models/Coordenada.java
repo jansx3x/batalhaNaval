@@ -27,8 +27,8 @@ public class Coordenada implements Serializable{
     private int coluna;
     
     @ManyToOne
-    @JoinColumn(name="arma_idarma")
-    private Arma a1;
+    @JoinColumn(name="arma_idarma", referencedColumnName = "idarma")
+    private Arma arma_idarma;
 
     public int getIdC() {
         return idC;
@@ -54,12 +54,12 @@ public class Coordenada implements Serializable{
         this.coluna = coluna;
     }
 
-    public Arma getA1() {
-        return a1;
+    public Arma getArma_idarma() {
+        return arma_idarma;
     }
 
-    public void setA1(Arma a1) {
-        this.a1 = a1;
+    public void setArma_idarma(Arma arma_idarma) {
+        this.arma_idarma = arma_idarma;
     }
 
     @Override
@@ -86,6 +86,5 @@ public class Coordenada implements Serializable{
         }
         return true;
     }
-    
-    
+  
 }

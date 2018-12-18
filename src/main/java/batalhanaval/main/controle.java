@@ -69,4 +69,19 @@ public class controle {
      public void salvaCoord(Coordenada c2){
          dao2.salvaNovo(c2);
      }
+     
+     public List<Coordenada> puxaLista(){
+         List<Coordenada> strList = new ArrayList<>();
+        List<Coordenada> jog = dao2.listarTodasCoord().getResultList();
+        
+        for(Coordenada j1 : jog) {
+            Coordenada j2 = new Coordenada();
+            j2.setIdC(j1.getIdC());
+            j2.setLinha(j1.getLinha());
+            j2.setColuna(j1.getColuna());
+            strList.add(j2);
+        }
+        
+        return strList;
+     }
 }

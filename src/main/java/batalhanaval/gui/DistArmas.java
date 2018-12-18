@@ -16,7 +16,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.awt.event.KeyEvent;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.*;
 
 /**
@@ -24,6 +25,7 @@ import javax.swing.*;
  * @author Zetsubou
  */
 public class DistArmas extends JFrame{
+    List<Coordenada> listaArmas = new ArrayList<>();
     int qntCoord = 0;
     int armaSelecionada = 0;
     int ori = 0;
@@ -130,11 +132,12 @@ public class DistArmas extends JFrame{
                         Coordenada c1 = new Coordenada();
                         c1.setColuna(coluna);
                         c1.setLinha(linha);
-                        c1.setA1((Arma) cb1.getSelectedItem());
-                        if(TemVizinhos(c1)) {
+                        c1.setArma_idarma((Arma) cb1.getSelectedItem());
+                        if(!TemVizinhos(c1)) {
                             ct1.salvaCoord(c1);
-                        }
-                        JOptionPane.showMessageDialog(null,"Salvo");
+                            JOptionPane.showMessageDialog(null,"Salvo");
+                            Botoes[linha][coluna].setEnabled(false);
+                        }       
                     }
                 }
             }
@@ -155,52 +158,65 @@ public class DistArmas extends JFrame{
         return c1.getColuna();
     }
     
-    int[] Norte(Coordenada c1){
-        int cdn[]= new int[2];
+    String Norte(Coordenada c1){
+        String cdn = "";
         if(getLinha(c1) == 0){
-            return null;
+            return cdn; 
         }else{
-            cdn[0] = getLinha(c1) - 1;
-            cdn[1] = getColuna(c1);
+            cdn = "" + (getLinha(c1) - 1) + getColuna(c1);
         }
         return cdn;
     } 
     
-    int[] Sul(Coordenada c1){
-        int cdn[]= new int[2];
+    String Sul(Coordenada c1){
+        String cdn = "";
         if(getLinha(c1) == 9){
-            return null;
+            return cdn;
         }else{
-            cdn[0] = getLinha(c1) + 1;
-            cdn[1] = getColuna(c1);
+            cdn = "" + (getLinha(c1) + 1) + getColuna(c1);
         }
         return cdn;
     }
     
-    int[] Leste(Coordenada c1){
-        int cdn[]= new int[2];
+    String Leste(Coordenada c1){
+        String cdn = "";
         if(getColuna(c1) == 9){
-            return null;
+            return cdn;
         }else{
-            cdn[0] = getLinha(c1);
-            cdn[1] = getColuna(c1) + 1;
+            cdn = "" + getLinha(c1) + (getColuna(c1) + 1);
         }
         return cdn;
     }
     
-    int[] Oeste(Coordenada c1){
-        int cdn[]= new int[2];
+    String Oeste(Coordenada c1){
+        String cdn = "";
         if(getColuna(c1) == 0){
             return null;
         }else{
-            cdn[0] = getLinha(c1);
-            cdn[1] = getColuna(c1) - 1;
+           cdn = "" + getLinha(c1) + (getColuna(c1) - 1);
         }
         return cdn;
     }
     
     public boolean TemVizinhos(Coordenada c1){
-        return true;
+        loop:
+        for(Coordenada c : listaArmas){
+            if((voltaVetor(c).equals(Norte(c1))) || (voltaVetor(c).equals(Sul(c1))) || (voltaVetor(c).equals(Leste(c1))) || (voltaVetor(c).equals(Oeste(c1)))){
+                return true;
+            }
+            break loop;
+        } 
+        return false;
+    }
+   
+    private String voltaVetor(Coordenada c1){
+        String cdn = "";
+        cdn = "" + getLinha(c1) + getColuna(c1);
+        return cdn;
+    }
+    
+    private void preencherLista(){
+        listaArmas = ct1.puxaLista();
     }
     
 }
